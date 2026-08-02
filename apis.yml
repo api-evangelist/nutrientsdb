@@ -1,0 +1,49 @@
+name: NutrientsDB
+description: >-
+  A downloadable global food-composition dataset (~2.9M foods, 86 normalized nutrient fields, 180+ countries) sold under
+  a one-time license, fronted by a free, keyless, read-only public Sample API exposing a 1,000-food sample with the full
+  nutrient schema.
+url: https://nutrientsdb.apievangelist.com/apis.yml
+created: '2026-08-02'
+modified: '2026-08-02'
+specificationVersion: '0.21'
+tags:
+  - nutrition
+  - food
+  - nutrients
+  - food-composition
+  - data
+  - search
+  - sample-data
+  - dataset
+  - ai-builders
+apis:
+  - name: NutrientsDB Sample API
+    description: >-
+      Free, keyless, read-only REST API providing access to the public 1,000-food sample with the full 86-field
+      normalized nutrient schema. Supports search by name and lookup by public ID.
+    humanURL: https://www.nutrientsdb.com/api/docs
+    baseURL: https://www.nutrientsdb.com/api
+    tags:
+      - nutrition
+      - food
+      - nutrients
+      - food-composition
+      - data
+      - search
+      - sample-data
+      - dataset
+      - ai-builders
+    properties:
+      - type: PostmanCollection
+        url: https://documenter.getpostman.com/view/57076285/2sBY4TqJ5d
+      - type: Documentation
+        url: https://www.nutrientsdb.com/api/docs
+maintainers:
+  - FN: Colinear Studio
+    url: https://github.com/colinearstudio
+generated:
+  by: apis.io/add
+  model: claude-opus-4-8
+  confidence: 80
+  at: '2026-08-02T16:14:49.198Z'
