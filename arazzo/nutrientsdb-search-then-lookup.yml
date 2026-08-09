@@ -1,0 +1,78 @@
+arazzo: 1.0.1
+info:
+  title: Resolve a food name to a NutrientsDB record and read its nutrient profile
+  version: 1.0.0
+  description: >-
+    Two-step flow over the free, keyless NutrientsDB Sample API: search the public 1,000-food sample
+    by name fragment, then re-fetch the chosen record by its stable public_id. Both steps use the
+    single published operation, findFoods, selected by q or by id. No authentication is required.
+sourceDescriptions:
+  - name: nutrientsdb
+    url: ../openapi/nutrientsdb-sample-api-openapi.yml
+    type: openapi
+workflows:
+  - workflowId: search-then-lookup-food
+    summary: Search the sample by food name, then retrieve the selected food by public_id.
+    description: >-
+      Step 1 searches by name fragment and returns up to 20 matches with total_matches so the caller
+      knows how many were withheld. Step 2 pins the chosen record by its stable public_id, which is
+      the identifier to persist — food names are verbose and ambiguous, ids are not.
+    inputs:
+      type: object
+      required: [query]
+      properties:
+        query:
+          type: string
+          minLength: 2
+          maxLength: 100
+          description: Food name fragment, case-insensitive substring match.
+          example: banana
+        limit:
+          type: integer
+          minimum: 1
+          maximum: 20
+          default: 10
+          description: Maximum search results. Values above 20 are capped at 20.
+          example: 5
+    steps:
+      - stepId: search-foods
+        description: Search the public 1,000-food sample by name fragment.
+        operationId: findFoods
+        parameters:
+          - name: q
+            in: query
+            value: $inputs.query
+          - name: limit
+            in: query
+            value: $inputs.limit
+        successCriteria:
+          - condition: $statusCode == 200
+          - context: $response.body
+            condition: $.count > 0
+            type: jsonpath
+        outputs:
+          firstFoodId: $response.body#/foods/0/public_id
+          firstFoodName: $response.body#/foods/0/name
+          matchCount: $response.body#/count
+          totalMatches: $response.body#/total_matches
+      - stepId: lookup-food
+        description: >-
+          Retrieve the selected food by its exact public_id. q and id are mutually exclusive, so this
+          step sends only id.
+        operationId: findFoods
+        parameters:
+          - name: id
+            in: query
+            value: $steps.search-foods.outputs.firstFoodId
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          foodName: $response.body#/food/name
+          nutrients: $response.body#/food/nutrients
+          energyKcal: $response.body#/food/nutrients/energy_kcal
+          proteinG: $response.body#/food/nutrients/protein_g
+    outputs:
+      publicId: $steps.search-foods.outputs.firstFoodId
+      name: $steps.lookup-food.outputs.foodName
+      nutrients: $steps.lookup-food.outputs.nutrients
+      totalMatches: $steps.search-foods.outputs.totalMatches

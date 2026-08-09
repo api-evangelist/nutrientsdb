@@ -1,0 +1,7 @@
+{
+  "sample": {
+    "food_count": 1000,
+    "nutrient_count": 86
+  },
+  "error": "q must contain at least 2 characters"
+}

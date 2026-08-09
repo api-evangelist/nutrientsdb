@@ -1,0 +1,52 @@
+generated: '2026-08-09'
+method: searched
+source: registry searches + https://www.nutrientsdb.com/api/docs + https://github.com/colinearstudio
+result: none
+description: >-
+  NutrientsDB publishes NO first-party client libraries. This is a recorded negative, not an
+  unattempted search. It is also consistent with the product: the commercial offering is a
+  downloadable dataset meant to be loaded locally as plain JSON — the GitHub sample README's only
+  code example is three lines of stdlib `json.load`, deliberately requiring no client at all. The
+  Sample API is a single keyless GET, which needs no SDK either.
+packages: []
+registries_searched:
+  - registry: npm
+    query: nutrientsdb
+    result: no packages
+  - registry: pypi
+    query: nutrientsdb
+    http_status: 404
+  - registry: pypi
+    query: nutrients-db
+    http_status: 404
+  - registry: github
+    org: colinearstudio
+    result: 1 public repo (nutrientsdb-sample), a data + schema reference repo with no client code
+data_distributions:
+  - kind: github
+    url: https://github.com/colinearstudio/nutrientsdb-sample
+    contents: [README.md, sample.json]
+    notes: 1,000-food sample with the full 86-field schema, plus the field reference.
+  - kind: huggingface-dataset
+    url: https://huggingface.co/datasets/colinearstudio/nutrientsdb
+    format: json
+    libraries: [datasets, pandas, polars, mlcroissant]
+    downloads: 34
+    last_modified: '2026-08-02'
+    notes: >-
+      Loadable through the Hugging Face datasets/pandas/polars ecosystem. These are third-party
+      loaders reading a published dataset, not NutrientsDB client libraries — do not count them
+      as SDKs.
+x-evidence:
+  fetched: '2026-08-09'
+  probes:
+    - url: https://registry.npmjs.org/-/v1/search?text=nutrientsdb&size=10
+      http_status: 200
+      note: Zero results.
+    - url: https://pypi.org/pypi/nutrientsdb/json
+      http_status: 404
+    - url: https://api.github.com/users/colinearstudio/repos
+      http_status: 200
+      note: One repo, nutrientsdb-sample.
+    - url: https://huggingface.co/api/datasets/colinearstudio/nutrientsdb
+      http_status: 200

@@ -1,0 +1,112 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the NutrientsDB Sample API
+  version: 1.0.0
+extends: openapi/nutrientsdb-sample-api-openapi.yml
+x-generated: '2026-08-09'
+x-method: generated
+x-source: >-
+  Derived from the provider-published OpenAPI at https://www.nutrientsdb.com/api/openapi plus live
+  response headers, the published nutrient schema reference, and the artifacts in this repo. Applies
+  our enhancements without mutating the harvested original in openapi/_original/.
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-slug: nutrientsdb
+      x-apievangelist-enriched: '2026-08-09'
+      x-artifact-vocabulary: vocabulary/nutrientsdb-nutrient-schema.yml
+      x-artifact-conventions: conventions/nutrientsdb-conventions.yml
+      x-artifact-errors: errors/nutrientsdb-problem-types.yml
+      x-artifact-authentication: authentication/nutrientsdb-authentication.yml
+      x-artifact-data-model: data-model/nutrientsdb-data-model.yml
+
+  - target: $.servers[0]
+    update:
+      description: >-
+        Production host. Operation paths already carry the /api prefix, so the effective base is
+        https://www.nutrientsdb.com/api.
+
+  - target: $
+    update:
+      tags:
+        - name: foods
+          description: Search and retrieve food records from the public 1,000-food NutrientsDB sample.
+
+  - target: $.paths['/api/foods'].get
+    update:
+      tags: [foods]
+      x-agentic-access:
+        action-class: connected
+        consequence: read
+        token:
+          max-ttl: 3600
+        audit: none
+      x-authentication-required: false
+      x-cors:
+        allow_origin: '*'
+        allow_methods: GET, HEAD, OPTIONS
+      x-cache:
+        cache_control: public
+        etag: weak
+      x-selectors:
+        mutually_exclusive: [q, id]
+        note: Supply exactly one of q or id. Supplying neither returns 400.
+      x-pagination:
+        style: limit-only
+        cursor: false
+        offset: false
+        note: >-
+          total_matches reports how many sample foods matched, but there is no mechanism to fetch
+          beyond the first `limit` results.
+      x-rate-limit:
+        documented: false
+        observed: No 429 and no RateLimit headers across 10 rapid sequential calls.
+
+  - target: $.paths['/api/foods'].get.responses['200']
+    update:
+      x-example: examples/nutrientsdb-search.json
+
+  - target: $.paths['/api/foods'].get.responses['400']
+    update:
+      x-observed-messages:
+        - Provide a food name with q or an exact public_id with id
+        - q must contain at least 2 characters
+      x-example: examples/nutrientsdb-error-missing-params.json
+
+  - target: $.paths['/api/foods'].get.responses['404']
+    update:
+      x-observed-messages:
+        - Food not found in the 1,000-record sample
+      x-semantics: >-
+        Means "absent from the free 1,000-food sample", NOT "absent from NutrientsDB". The full
+        ~2.9M-food dataset is a licensed download and is not queryable through this API.
+      x-example: examples/nutrientsdb-error-not-found.json
+
+  - target: $.components.schemas.Food
+    update:
+      x-expanded-schema: json-schema/nutrientsdb-food.json
+      x-identifier: public_id
+      description: >-
+        A single food record. The nutrients map is declared open, but in practice all 86 published
+        nutrient keys are present on every record — verified 86/86 against a live payload. See
+        json-schema/nutrientsdb-food.json for the named, unit-typed expansion.
+
+  - target: $.components.schemas.Food.properties.nutrients
+    update:
+      x-key-count: 86
+      x-basis: per 100 g of food
+      x-null-semantics: >-
+        null means the source did not report the nutrient. It does not mean zero.
+      x-unit-suffixes:
+        _g: grams
+        _mg: milligrams
+        _ug: micrograms
+        _kcal: kilocalories
+      x-vocabulary: vocabulary/nutrientsdb-nutrient-schema.yml
+
+  - target: $.components.schemas.ErrorResponse
+    update:
+      x-rfc9457: false
+      x-note: >-
+        Not application/problem+json. The sample block is present on errors as well as successes, so
+        it cannot be used as a success discriminator — branch on HTTP status.

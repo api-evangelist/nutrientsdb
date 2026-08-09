@@ -1,0 +1,313 @@
+generated: '2026-08-09'
+method: searched
+source: https://github.com/colinearstudio/nutrientsdb-sample (README.md schema reference)
+name: NutrientsDB normalized nutrient schema
+description: The 86 normalized nutrient field names used on every NutrientsDB food record, in both the free 1,000-food
+  Sample API and the full downloadable dataset. All values are per 100 g of the food, the standard basis for food
+  composition data. A value is null when the source does not report that nutrient. The measurement unit is encoded
+  as a suffix on the field name.
+basis: per 100 g of food
+null_semantics: null means the source did not report the nutrient — it does not mean zero.
+unit_suffixes:
+- suffix: _g
+  unit: grams (g)
+- suffix: _mg
+  unit: milligrams (mg)
+- suffix: _ug
+  unit: micrograms (mcg)
+- suffix: _kcal
+  unit: kilocalories (kcal)
+x-evidence:
+  fetched: '2026-08-09'
+  schema_reference:
+    url: https://raw.githubusercontent.com/colinearstudio/nutrientsdb-sample/HEAD/README.md
+    http_status: 200
+  live_payload:
+    url: https://www.nutrientsdb.com/api/foods?id=2923506
+    http_status: 200
+  verification: All 86 field names in the published schema reference were matched exactly against the nutrients
+    object returned by the live Sample API — 86/86, no additions, no omissions.
+field_count: 86
+groups:
+- group: Energy and macronutrients
+  field_count: 8
+  fields:
+  - field: alcohol_g
+    unit: g
+    description: Alcohol (ethanol)
+  - field: carbs_g
+    unit: g
+    description: Total carbohydrate
+  - field: energy_kcal
+    unit: kcal
+    description: Total food energy
+  - field: fat_g
+    unit: g
+    description: Total fat (lipids)
+  - field: fiber_g
+    unit: g
+    description: Dietary fiber
+  - field: protein_g
+    unit: g
+    description: Total protein
+  - field: starch_g
+    unit: g
+    description: Starch
+  - field: water_g
+    unit: g
+    description: Water content
+- group: Carbohydrates and sugars
+  field_count: 8
+  fields:
+  - field: fructose_g
+    unit: g
+    description: Fructose
+  - field: galactose_g
+    unit: g
+    description: Galactose
+  - field: glucose_g
+    unit: g
+    description: Glucose (dextrose)
+  - field: lactose_g
+    unit: g
+    description: Lactose
+  - field: maltose_g
+    unit: g
+    description: Maltose
+  - field: sucrose_g
+    unit: g
+    description: Sucrose
+  - field: sugar_added_g
+    unit: g
+    description: Added sugars
+  - field: sugar_g
+    unit: g
+    description: Total sugars
+- group: Fats and fatty acids
+  field_count: 13
+  fields:
+  - field: cholesterol_mg
+    unit: mg
+    description: Cholesterol
+  - field: fatty_acid_16_0_g
+    unit: g
+    description: Palmitic acid (16:0)
+  - field: fatty_acid_18_0_g
+    unit: g
+    description: Stearic acid (18:0)
+  - field: fatty_acid_18_1_g
+    unit: g
+    description: Oleic acid (18:1)
+  - field: fatty_acid_18_2_n6_g
+    unit: g
+    description: Linoleic acid (18:2 n-6)
+  - field: fatty_acid_18_3_n3_g
+    unit: g
+    description: Alpha-linolenic acid, ALA (18:3 n-3)
+  - field: fatty_acid_20_5_n3_g
+    unit: g
+    description: Eicosapentaenoic acid, EPA (20:5 n-3)
+  - field: fatty_acid_22_6_n3_g
+    unit: g
+    description: Docosahexaenoic acid, DHA (22:6 n-3)
+  - field: fatty_acid_4_0_g
+    unit: g
+    description: Butyric acid (4:0)
+  - field: monounsaturated_fat_g
+    unit: g
+    description: Total monounsaturated fat
+  - field: polyunsaturated_fat_g
+    unit: g
+    description: Total polyunsaturated fat
+  - field: saturated_fat_g
+    unit: g
+    description: Total saturated fat
+  - field: trans_fat_g
+    unit: g
+    description: Trans fat
+- group: Minerals
+  field_count: 16
+  fields:
+  - field: calcium_mg
+    unit: mg
+    description: Calcium
+  - field: chloride_mg
+    unit: mg
+    description: Chloride
+  - field: chromium_mg
+    unit: mg
+    description: Chromium
+  - field: copper_mg
+    unit: mg
+    description: Copper
+  - field: fluoride_ug
+    unit: mcg
+    description: Fluoride
+  - field: iodine_ug
+    unit: mcg
+    description: Iodine
+  - field: iron_mg
+    unit: mg
+    description: Iron
+  - field: magnesium_mg
+    unit: mg
+    description: Magnesium
+  - field: manganese_mg
+    unit: mg
+    description: Manganese
+  - field: molybdenum_ug
+    unit: mcg
+    description: Molybdenum
+  - field: phosphorus_mg
+    unit: mg
+    description: Phosphorus
+  - field: phytate_mg
+    unit: mg
+    description: Phytate (phytic acid)
+  - field: potassium_mg
+    unit: mg
+    description: Potassium
+  - field: selenium_ug
+    unit: mcg
+    description: Selenium
+  - field: sodium_mg
+    unit: mg
+    description: Sodium
+  - field: zinc_mg
+    unit: mg
+    description: Zinc
+- group: Vitamins
+  field_count: 15
+  fields:
+  - field: biotin_ug
+    unit: mcg
+    description: Vitamin B7 (biotin)
+  - field: choline_mg
+    unit: mg
+    description: Choline
+  - field: folate_ug
+    unit: mcg
+    description: Folate (B9)
+  - field: niacin_equivalents_mg
+    unit: mg
+    description: Niacin equivalents (NE)
+  - field: niacin_mg
+    unit: mg
+    description: Vitamin B3 (niacin)
+  - field: pantothenic_acid_mg
+    unit: mg
+    description: Vitamin B5 (pantothenic acid)
+  - field: riboflavin_mg
+    unit: mg
+    description: Vitamin B2 (riboflavin)
+  - field: thiamin_mg
+    unit: mg
+    description: Vitamin B1 (thiamin)
+  - field: vitamin_a_rae_ug
+    unit: mcg
+    description: Vitamin A (retinol activity equivalents)
+  - field: vitamin_b12_ug
+    unit: mcg
+    description: Vitamin B12
+  - field: vitamin_b6_mg
+    unit: mg
+    description: Vitamin B6
+  - field: vitamin_c_mg
+    unit: mg
+    description: Vitamin C (ascorbic acid)
+  - field: vitamin_d_ug
+    unit: mcg
+    description: Vitamin D
+  - field: vitamin_e_mg
+    unit: mg
+    description: Vitamin E (alpha-tocopherol)
+  - field: vitamin_k_ug
+    unit: mcg
+    description: Vitamin K
+- group: Carotenoids
+  field_count: 5
+  fields:
+  - field: alpha_carotene_ug
+    unit: mcg
+    description: Alpha-carotene
+  - field: beta_carotene_ug
+    unit: mcg
+    description: Beta-carotene
+  - field: beta_cryptoxanthin_ug
+    unit: mcg
+    description: Beta-cryptoxanthin
+  - field: lutein_zeaxanthin_ug
+    unit: mcg
+    description: Lutein and zeaxanthin
+  - field: lycopene_ug
+    unit: mcg
+    description: Lycopene
+- group: Amino acids
+  field_count: 19
+  fields:
+  - field: alanine_g
+    unit: g
+    description: Alanine
+  - field: arginine_g
+    unit: g
+    description: Arginine
+  - field: aspartic_acid_g
+    unit: g
+    description: Aspartic acid
+  - field: cystine_g
+    unit: g
+    description: Cystine
+  - field: glutamic_acid_g
+    unit: g
+    description: Glutamic acid
+  - field: glycine_g
+    unit: g
+    description: Glycine
+  - field: histidine_g
+    unit: g
+    description: Histidine
+  - field: hydroxyproline_g
+    unit: g
+    description: Hydroxyproline
+  - field: isoleucine_g
+    unit: g
+    description: Isoleucine
+  - field: leucine_g
+    unit: g
+    description: Leucine
+  - field: lysine_g
+    unit: g
+    description: Lysine
+  - field: methionine_g
+    unit: g
+    description: Methionine
+  - field: phenylalanine_g
+    unit: g
+    description: Phenylalanine
+  - field: proline_g
+    unit: g
+    description: Proline
+  - field: serine_g
+    unit: g
+    description: Serine
+  - field: threonine_g
+    unit: g
+    description: Threonine
+  - field: tryptophan_g
+    unit: g
+    description: Tryptophan
+  - field: tyrosine_g
+    unit: Tyrosine
+    description: ''
+  - field: valine_g
+    unit: g
+    description: Valine
+- group: Other compounds
+  field_count: 2
+  fields:
+  - field: caffeine_mg
+    unit: mg
+    description: Caffeine
+  - field: theobromine_mg
+    unit: mg
+    description: Theobromine

@@ -1,0 +1,7 @@
+{
+  "sample": {
+    "food_count": 1000,
+    "nutrient_count": 86
+  },
+  "error": "Food not found in the 1,000-record sample"
+}

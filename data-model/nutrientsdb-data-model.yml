@@ -1,0 +1,95 @@
+generated: '2026-08-09'
+method: derived
+source: openapi/nutrientsdb-sample-api-openapi.yml
+description: >-
+  Entity graph for the NutrientsDB Sample API, derived from the OpenAPI components.schemas $ref
+  links. This is a flat reference-data model, not a relational one: there is exactly one domain
+  entity (Food), no cross-entity foreign keys, and no write path. The other schemas are response
+  envelopes rather than entities, and they are recorded as such so an agent does not mistake
+  SearchResponse for a resource it can address.
+entities:
+  - name: Food
+    kind: domain-entity
+    schema: openapi/nutrientsdb-sample-api-openapi.yml#/components/schemas/Food
+    expanded_schema: json-schema/nutrientsdb-food.json
+    identifier:
+      field: public_id
+      type: integer
+      stable: true
+      prefixed: false
+      example: 2923506
+    fields:
+      - {field: public_id, type: integer, required: true}
+      - {field: name, type: string, required: true, searchable: true}
+      - {field: nutrients, type: object, required: true, key_count: 86}
+    notes: >-
+      nutrients is declared in the OpenAPI as an open map (additionalProperties number|null). The
+      86 real keys are published in the schema reference and captured in
+      vocabulary/nutrientsdb-nutrient-schema.yml, verified 86/86 against a live payload.
+    cardinality:
+      sample: 1000
+      full_dataset: ~2900000
+      note: Only the 1,000-food sample is reachable through this API.
+  - name: SampleMetadata
+    kind: value-object
+    schema: openapi/nutrientsdb-sample-api-openapi.yml#/components/schemas/SampleMetadata
+    fields:
+      - {field: food_count, type: integer}
+      - {field: nutrient_count, type: integer}
+    notes: Attached to every response, success and error alike.
+envelopes:
+  - name: SearchResponse
+    schema: openapi/nutrientsdb-sample-api-openapi.yml#/components/schemas/SearchResponse
+    returns: array of Food
+    fields: [sample, query, count, total_matches, limit, foods]
+  - name: LookupResponse
+    schema: openapi/nutrientsdb-sample-api-openapi.yml#/components/schemas/LookupResponse
+    returns: single Food
+    fields: [sample, food]
+  - name: ErrorResponse
+    schema: openapi/nutrientsdb-sample-api-openapi.yml#/components/schemas/ErrorResponse
+    fields: [sample, error]
+relationships:
+  - from: SearchResponse
+    to: Food
+    type: has_many
+    via: foods
+    source: $ref array item
+  - from: SearchResponse
+    to: SampleMetadata
+    type: has_one
+    via: sample
+    source: $ref
+  - from: LookupResponse
+    to: Food
+    type: has_one
+    via: food
+    source: $ref
+  - from: LookupResponse
+    to: SampleMetadata
+    type: has_one
+    via: sample
+    source: $ref
+  - from: ErrorResponse
+    to: SampleMetadata
+    type: has_one
+    via: sample
+    source: $ref
+access_paths:
+  - operationId: findFoods
+    selector: q
+    returns: SearchResponse
+    description: Case-insensitive substring match on Food.name, capped at 20 results.
+  - operationId: findFoods
+    selector: id
+    returns: LookupResponse
+    description: Exact match on Food.public_id.
+observations:
+  - No foreign keys between entities — Food is self-contained; nutrients are inline, not a joined table.
+  - No category, source-country, or provenance field is exposed on the sample record, even though the
+    full dataset is described as deduplicated across 180+ countries.
+  - No write, patch, or delete operations exist; the model is read-only.
+cross_links:
+  vocabulary: vocabulary/nutrientsdb-nutrient-schema.yml
+  json_schema: json-schema/nutrientsdb-food.json
+  examples: examples/_index.yml

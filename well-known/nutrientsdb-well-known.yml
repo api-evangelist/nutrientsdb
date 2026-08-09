@@ -1,0 +1,79 @@
+generated: '2026-08-09'
+method: probed
+source: live probes of https://www.nutrientsdb.com and https://nutrientsdb.com
+host: https://www.nutrientsdb.com
+result: none
+description: >-
+  NutrientsDB serves NO /.well-known documents. Read the status codes below carefully: every
+  /.well-known/* path returns HTTP 200, but the body is the site's single-page-app HTML shell —
+  byte-identical (11,489 bytes, matching MD5) to the homepage for every path probed. This is a
+  catch-all route, not a discovery surface. A crawler that trusts status codes alone will report
+  llms.txt, ai-plugin.json, api-catalog and an agent card as present; all four are false positives,
+  and an earlier automated pass on this provider recorded exactly that. A 200 is not evidence.
+  Real routes on this host live under /api/* and return proper JSON with real 400/404 codes, which
+  is how the SPA shell was distinguished from a genuine document.
+catch_all:
+  detected: true
+  behavior: All unmatched paths return HTTP 200 with the SPA index document.
+  body_bytes: 11489
+  content_type: text/html; charset=utf-8
+  verification: >-
+    MD5 of /.well-known/security.txt body compared byte-for-byte against the homepage body — identical.
+documents:
+  - path: /.well-known/security.txt
+    status: 200
+    valid: false
+    reason: spa-catch-all-html
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 200
+    valid: false
+    reason: spa-catch-all-html
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    valid: false
+    reason: spa-catch-all-html
+    file: null
+  - path: /.well-known/api-catalog
+    status: 200
+    valid: false
+    reason: spa-catch-all-html
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    valid: false
+    reason: spa-catch-all-html
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 200
+    valid: false
+    reason: spa-catch-all-html
+    file: null
+  - path: /.well-known/agent.json
+    status: 200
+    valid: false
+    reason: spa-catch-all-html
+    file: null
+  - path: /llms.txt
+    status: 200
+    valid: false
+    reason: spa-catch-all-html
+    file: null
+apex_host:
+  host: https://nutrientsdb.com
+  behavior: Same catch-all; /.well-known/security.txt, /.well-known/agent-card.json and /llms.txt all
+    returned 200 with the same 11,489-byte HTML shell.
+api_host_paths:
+  - path: /api/llms.txt
+    status: 404
+    note: The /api/* router returns a real 404 (79 bytes, text/plain), confirming the catch-all is
+      confined to the SPA routes.
+  - path: /api/mcp
+    status: 404
+    note: Real 404 from the API router.
+x-evidence:
+  fetched: '2026-08-09'
+  probed_hosts: [www.nutrientsdb.com, nutrientsdb.com]
+  discriminator: >-
+    Body-content comparison against the homepage, plus the contrasting real 404s under /api/*.

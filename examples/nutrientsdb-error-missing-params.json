@@ -1,0 +1,7 @@
+{
+  "sample": {
+    "food_count": 1000,
+    "nutrient_count": 86
+  },
+  "error": "Provide a food name with q or an exact public_id with id"
+}

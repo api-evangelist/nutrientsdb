@@ -1,0 +1,59 @@
+generated: '2026-08-09'
+method: probed
+source: live calls against https://www.nutrientsdb.com/api/foods
+description: Real request/response captures from the free, keyless NutrientsDB Sample API. Every payload in this
+  directory was returned verbatim by the live endpoint on the fetch date — none are hand-written. Nutrient values
+  are per 100 g; null means the source did not report that nutrient.
+api: openapi/nutrientsdb-sample-api-openapi.yml
+fetched: '2026-08-09'
+examples:
+- name: search
+  description: Search the sample by food-name fragment
+  operationId: findFoods
+  request:
+    method: GET
+    url: https://www.nutrientsdb.com/api/foods?q=banana&limit=2
+  response:
+    http_status: 200
+    content_type: application/json
+    file: nutrientsdb-search.json
+- name: lookup
+  description: Retrieve one food by its exact public_id
+  operationId: findFoods
+  request:
+    method: GET
+    url: https://www.nutrientsdb.com/api/foods?id=2923506
+  response:
+    http_status: 200
+    content_type: application/json
+    file: nutrientsdb-lookup.json
+- name: error-missing-params
+  description: Neither q nor id supplied
+  operationId: findFoods
+  request:
+    method: GET
+    url: https://www.nutrientsdb.com/api/foods
+  response:
+    http_status: 400
+    content_type: application/json
+    file: nutrientsdb-error-missing-params.json
+- name: error-short-q
+  description: q shorter than the 2-character minimum
+  operationId: findFoods
+  request:
+    method: GET
+    url: https://www.nutrientsdb.com/api/foods?q=a
+  response:
+    http_status: 400
+    content_type: application/json
+    file: nutrientsdb-error-short-q.json
+- name: error-not-found
+  description: public_id not present in the 1,000-food sample
+  operationId: findFoods
+  request:
+    method: GET
+    url: https://www.nutrientsdb.com/api/foods?id=999999999
+  response:
+    http_status: 404
+    content_type: application/json
+    file: nutrientsdb-error-not-found.json

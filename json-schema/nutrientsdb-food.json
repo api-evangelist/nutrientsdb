@@ -1,0 +1,817 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nutrientsdb.apievangelist.com/json-schema/nutrientsdb-food.json",
+  "title": "NutrientsDB Food",
+  "description": "A single NutrientsDB food record. Derived from the provider's OpenAPI 3.1.0 Food schema, with the nutrients object expanded from the additionalProperties placeholder into the 86 named, unit-suffixed nutrient fields published in the NutrientsDB schema reference and verified 86/86 against a live API payload. All values are per 100 g of the food.",
+  "x-derived-from": "openapi/nutrientsdb-sample-api-openapi.yml#/components/schemas/Food",
+  "x-vocabulary": "vocabulary/nutrientsdb-nutrient-schema.yml",
+  "type": "object",
+  "required": [
+    "public_id",
+    "name",
+    "nutrients"
+  ],
+  "properties": {
+    "public_id": {
+      "type": "integer",
+      "description": "Stable NutrientsDB identifier for the food.",
+      "examples": [
+        2923506
+      ]
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable food name.",
+      "examples": [
+        "Turkey, drumstick, meat only, raw"
+      ]
+    },
+    "nutrients": {
+      "type": "object",
+      "description": "All 86 normalized nutrient keys, per 100 g. Present on every record.",
+      "properties": {
+        "alanine_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Alanine (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "alcohol_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Alcohol (ethanol) (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Energy and macronutrients"
+        },
+        "alpha_carotene_ug": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Alpha-carotene (mcg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mcg",
+          "x-group": "Carotenoids"
+        },
+        "arginine_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Arginine (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "aspartic_acid_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Aspartic acid (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "beta_carotene_ug": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Beta-carotene (mcg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mcg",
+          "x-group": "Carotenoids"
+        },
+        "beta_cryptoxanthin_ug": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Beta-cryptoxanthin (mcg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mcg",
+          "x-group": "Carotenoids"
+        },
+        "biotin_ug": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Vitamin B7 (biotin) (mcg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mcg",
+          "x-group": "Vitamins"
+        },
+        "caffeine_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Caffeine (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Other compounds"
+        },
+        "calcium_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Calcium (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Minerals"
+        },
+        "carbs_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Total carbohydrate (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Energy and macronutrients"
+        },
+        "chloride_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Chloride (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Minerals"
+        },
+        "cholesterol_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Cholesterol (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Fats and fatty acids"
+        },
+        "choline_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Choline (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Vitamins"
+        },
+        "chromium_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Chromium (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Minerals"
+        },
+        "copper_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Copper (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Minerals"
+        },
+        "cystine_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Cystine (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "energy_kcal": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Total food energy (kcal per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "kcal",
+          "x-group": "Energy and macronutrients"
+        },
+        "fat_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Total fat (lipids) (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Energy and macronutrients"
+        },
+        "fatty_acid_16_0_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Palmitic acid (16:0) (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Fats and fatty acids"
+        },
+        "fatty_acid_18_0_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Stearic acid (18:0) (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Fats and fatty acids"
+        },
+        "fatty_acid_18_1_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Oleic acid (18:1) (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Fats and fatty acids"
+        },
+        "fatty_acid_18_2_n6_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Linoleic acid (18:2 n-6) (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Fats and fatty acids"
+        },
+        "fatty_acid_18_3_n3_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Alpha-linolenic acid, ALA (18:3 n-3) (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Fats and fatty acids"
+        },
+        "fatty_acid_20_5_n3_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Eicosapentaenoic acid, EPA (20:5 n-3) (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Fats and fatty acids"
+        },
+        "fatty_acid_22_6_n3_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Docosahexaenoic acid, DHA (22:6 n-3) (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Fats and fatty acids"
+        },
+        "fatty_acid_4_0_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Butyric acid (4:0) (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Fats and fatty acids"
+        },
+        "fiber_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Dietary fiber (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Energy and macronutrients"
+        },
+        "fluoride_ug": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Fluoride (mcg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mcg",
+          "x-group": "Minerals"
+        },
+        "folate_ug": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Folate (B9) (mcg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mcg",
+          "x-group": "Vitamins"
+        },
+        "fructose_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Fructose (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Carbohydrates and sugars"
+        },
+        "galactose_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Galactose (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Carbohydrates and sugars"
+        },
+        "glucose_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Glucose (dextrose) (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Carbohydrates and sugars"
+        },
+        "glutamic_acid_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Glutamic acid (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "glycine_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Glycine (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "histidine_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Histidine (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "hydroxyproline_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Hydroxyproline (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "iodine_ug": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Iodine (mcg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mcg",
+          "x-group": "Minerals"
+        },
+        "iron_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Iron (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Minerals"
+        },
+        "isoleucine_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Isoleucine (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "lactose_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Lactose (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Carbohydrates and sugars"
+        },
+        "leucine_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Leucine (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "lutein_zeaxanthin_ug": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Lutein and zeaxanthin (mcg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mcg",
+          "x-group": "Carotenoids"
+        },
+        "lycopene_ug": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Lycopene (mcg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mcg",
+          "x-group": "Carotenoids"
+        },
+        "lysine_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Lysine (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "magnesium_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Magnesium (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Minerals"
+        },
+        "maltose_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Maltose (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Carbohydrates and sugars"
+        },
+        "manganese_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Manganese (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Minerals"
+        },
+        "methionine_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Methionine (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "molybdenum_ug": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Molybdenum (mcg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mcg",
+          "x-group": "Minerals"
+        },
+        "monounsaturated_fat_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Total monounsaturated fat (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Fats and fatty acids"
+        },
+        "niacin_equivalents_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Niacin equivalents (NE) (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Vitamins"
+        },
+        "niacin_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Vitamin B3 (niacin) (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Vitamins"
+        },
+        "pantothenic_acid_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Vitamin B5 (pantothenic acid) (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Vitamins"
+        },
+        "phenylalanine_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Phenylalanine (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "phosphorus_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Phosphorus (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Minerals"
+        },
+        "phytate_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Phytate (phytic acid) (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Minerals"
+        },
+        "polyunsaturated_fat_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Total polyunsaturated fat (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Fats and fatty acids"
+        },
+        "potassium_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Potassium (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Minerals"
+        },
+        "proline_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Proline (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "protein_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Total protein (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Energy and macronutrients"
+        },
+        "riboflavin_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Vitamin B2 (riboflavin) (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Vitamins"
+        },
+        "saturated_fat_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Total saturated fat (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Fats and fatty acids"
+        },
+        "selenium_ug": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Selenium (mcg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mcg",
+          "x-group": "Minerals"
+        },
+        "serine_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Serine (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "sodium_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Sodium (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Minerals"
+        },
+        "starch_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Starch (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Energy and macronutrients"
+        },
+        "sucrose_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Sucrose (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Carbohydrates and sugars"
+        },
+        "sugar_added_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Added sugars (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Carbohydrates and sugars"
+        },
+        "sugar_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Total sugars (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Carbohydrates and sugars"
+        },
+        "theobromine_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Theobromine (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Other compounds"
+        },
+        "thiamin_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Vitamin B1 (thiamin) (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Vitamins"
+        },
+        "threonine_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Threonine (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "trans_fat_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Trans fat (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Fats and fatty acids"
+        },
+        "tryptophan_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Tryptophan (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "tyrosine_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": " (Tyrosine per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "Tyrosine",
+          "x-group": "Amino acids"
+        },
+        "valine_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Valine (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Amino acids"
+        },
+        "vitamin_a_rae_ug": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Vitamin A (retinol activity equivalents) (mcg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mcg",
+          "x-group": "Vitamins"
+        },
+        "vitamin_b12_ug": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Vitamin B12 (mcg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mcg",
+          "x-group": "Vitamins"
+        },
+        "vitamin_b6_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Vitamin B6 (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Vitamins"
+        },
+        "vitamin_c_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Vitamin C (ascorbic acid) (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Vitamins"
+        },
+        "vitamin_d_ug": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Vitamin D (mcg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mcg",
+          "x-group": "Vitamins"
+        },
+        "vitamin_e_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Vitamin E (alpha-tocopherol) (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Vitamins"
+        },
+        "vitamin_k_ug": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Vitamin K (mcg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mcg",
+          "x-group": "Vitamins"
+        },
+        "water_g": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Water content (g per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "g",
+          "x-group": "Energy and macronutrients"
+        },
+        "zinc_mg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Zinc (mg per 100 g). Null when the source does not report this nutrient.",
+          "x-unit": "mg",
+          "x-group": "Minerals"
+        }
+      },
+      "additionalProperties": {
+        "type": [
+          "number",
+          "null"
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,68 @@
+generated: '2026-08-09'
+method: derived
+source: openapi/nutrientsdb-sample-api-openapi.yml + https://www.nutrientsdb.com/sitemap.xml
+description: >-
+  Lifecycle posture for the NutrientsDB Sample API. Recorded as much for what is absent as for what
+  is present: there is no status page, no deprecation policy, no SLA, no changelog, and no version
+  in the URL. For a free companion API to a licensed dataset that is a defensible position, but a
+  consumer should not build a dependency on it expecting notice before a change.
+versioning:
+  scheme: none-in-path
+  current: 1.0.0
+  declared_in: OpenAPI info.version
+  in_url: false
+  in_header: false
+  date_based: false
+  notes: >-
+    https://www.nutrientsdb.com/api/foods carries no version segment. A breaking change would be
+    served at the same URL. Clients should pin against the captured spec in openapi/ and diff.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  deprecated_operations: []
+  notes: No RFC 8594 Sunset or Deprecation headers observed on live responses.
+sla:
+  url: null
+  uptime_target: null
+  published: false
+status_page:
+  url: null
+  found: false
+  notes: >-
+    No status.nutrientsdb.com, no /status route, and no status entry in the published sitemap.
+changelog:
+  url: null
+  found: false
+  notes: >-
+    The site publishes a /blog (two dated posts as of this pass) but no API changelog or release
+    notes. The dataset sample on GitHub and Hugging Face carries commit history, which is the
+    closest thing to a change record for the data itself.
+support:
+  contact_page: https://www.nutrientsdb.com/contact
+  channels: [contact-form]
+data_lifecycle:
+  product: >-
+    The commercial product is a one-time-license downloadable dataset (~2.9M foods, 86 nutrient
+    fields, 180+ countries), not a subscription API. Refresh cadence for the licensed dataset is
+    not published.
+  sample_mirrors:
+    - https://github.com/colinearstudio/nutrientsdb-sample
+    - https://huggingface.co/datasets/colinearstudio/nutrientsdb
+  sample_last_modified: '2026-08-02'
+  notes: >-
+    The Hugging Face dataset card reports lastModified 2026-08-02, which is the most reliable
+    public freshness signal for the sample.
+x-evidence:
+  fetched: '2026-08-09'
+  probes:
+    - url: https://www.nutrientsdb.com/sitemap.xml
+      http_status: 200
+      note: 13 URLs; no status, changelog, or deprecation page listed.
+    - url: https://www.nutrientsdb.com/api/foods?id=2923506
+      http_status: 200
+      note: No Sunset, Deprecation, or Warning headers present.
+    - url: https://huggingface.co/api/datasets/colinearstudio/nutrientsdb
+      http_status: 200
+      note: lastModified 2026-08-02T13:36:32.000Z.

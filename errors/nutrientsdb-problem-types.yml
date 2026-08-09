@@ -1,0 +1,66 @@
+generated: '2026-08-09'
+method: derived
+source: openapi/nutrientsdb-sample-api-openapi.yml + live probes of https://www.nutrientsdb.com/api/foods
+format: custom-json
+description: >-
+  Error catalog for the NutrientsDB Sample API. The API does NOT use RFC 9457
+  application/problem+json — it returns application/json with a flat envelope carrying the same
+  sample metadata block as a success response plus a single human-readable error string. There is
+  no machine-readable error code, type URI, or field pointer, so an agent must branch on the HTTP
+  status and, if it needs finer granularity, on the error string itself. Every problem below was
+  observed live, not inferred.
+envelope:
+  content_type: application/json
+  shape:
+    sample:
+      food_count: integer
+      nutrient_count: integer
+    error: string
+  schema: openapi/nutrientsdb-sample-api-openapi.yml#/components/schemas/ErrorResponse
+  machine_readable_code: false
+  field_pointer: false
+  notes: >-
+    The sample block is present on both success and error responses, so its presence is not a
+    success signal. Check the HTTP status.
+problems:
+  - status: 400
+    title: Missing query parameter
+    detail: Provide a food name with q or an exact public_id with id
+    cause: Neither q nor id was supplied on the request.
+    remediation: Supply exactly one of q (name fragment, 2-100 characters) or id (integer public_id).
+    source_operation: openapi/nutrientsdb-sample-api-openapi.yml#findFoods
+    example: examples/nutrientsdb-error-missing-params.json
+    observed: true
+  - status: 400
+    title: Search term too short
+    detail: q must contain at least 2 characters
+    cause: q was supplied but is shorter than the documented 2-character minimum.
+    remediation: Send a q value of 2 to 100 characters.
+    source_operation: openapi/nutrientsdb-sample-api-openapi.yml#findFoods
+    example: examples/nutrientsdb-error-short-q.json
+    observed: true
+  - status: 404
+    title: Food not in sample
+    detail: Food not found in the 1,000-record sample
+    cause: >-
+      The public_id is well-formed but is not one of the 1,000 foods in the free public sample. A
+      404 here does NOT mean the food is absent from NutrientsDB — the full ~2.9M-record dataset is
+      a downloadable licensed product and is not queryable through this endpoint.
+    remediation: >-
+      Use a public_id returned by a q search against the sample, or license the full dataset for
+      local lookup.
+    source_operation: openapi/nutrientsdb-sample-api-openapi.yml#findFoods
+    example: examples/nutrientsdb-error-not-found.json
+    observed: true
+retry_guidance:
+  400: Do not retry without changing the request — the input is invalid.
+  404: Do not retry — the record is outside the published sample.
+  5xx: Not observed. The endpoint is a read-only GET; a retry is safe by HTTP method semantics.
+gaps:
+  - No RFC 9457 application/problem+json representation.
+  - No stable machine-readable error code — clients must match on status plus prose.
+  - No 429 / rate-limit error documented or observed.
+  - No 5xx responses declared in the OpenAPI.
+cross_links:
+  conventions: conventions/nutrientsdb-conventions.yml
+  examples: examples/_index.yml
