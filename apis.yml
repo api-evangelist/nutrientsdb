@@ -26,45 +26,30 @@ tags:
   - open-data
   - keyless-api
 apis:
-  - name: NutrientsDB Sample API
-    description: >-
-      Free, keyless, read-only REST API providing access to the public 1,000-food sample with the full 86-field
-      normalized nutrient schema. A single operation, findFoods, supports case-insensitive search by food name (q) or
-      exact lookup by public_id (id), capped at 20 results with no cursor or offset. No authentication, HTTPS only,
-      wildcard CORS. A 404 means the food is not in the free sample, not that it is absent from NutrientsDB — the full
-      ~2.9M-food dataset is a licensed download and is not queryable through this endpoint.
-    humanURL: https://www.nutrientsdb.com/api/docs
-    baseURL: https://www.nutrientsdb.com/api
-    tags:
-      - nutrition
-      - food
-      - nutrients
-      - food-composition
-      - data
-      - search
-      - sample-data
-      - dataset
-      - ai-builders
-    properties:
-      - type: OpenAPI
-        url: openapi/nutrientsdb-sample-api-openapi.yml
-      - type: PostmanCollection
-        url: https://documenter.getpostman.com/view/57076285/2sBY4TqJ5d
-      - type: Documentation
-        url: https://www.nutrientsdb.com/api/docs
-      - type: Examples
-        url: examples/_index.yml
-      - type: ErrorCatalog
-        url: errors/nutrientsdb-problem-types.yml
-      - type: DataModel
-        url: data-model/nutrientsdb-data-model.yml
-      - type: JSONSchema
-        url: json-schema/nutrientsdb-food.json
-      - type: Overlay
-        url: overlays/nutrientsdb-sample-api-overlay.yaml
-      - type: Arazzo
-        name: Resolve a food name to a NutrientsDB record and read its nutrient profile
-        url: arazzo/nutrientsdb-search-then-lookup.yml
+- aid: nutrientsdb:nutrientsdb-foods-api
+  name: NutrientsDB Foods API
+  description: The Foods API from NutrientsDB — 1 operation(s) for foods.
+  humanURL: https://www.nutrientsdb.com/api/docs
+  baseURL: https://www.nutrientsdb.com/api
+  tags:
+  - Foods
+  properties:
+  - type: OpenAPI
+    url: openapi/nutrientsdb-foods-api-openapi.yml
+  - type: PostmanCollection
+    url: https://documenter.getpostman.com/view/57076285/2sBY4TqJ5d
+  - type: Documentation
+    url: https://www.nutrientsdb.com/api/docs
+  - type: Examples
+    url: examples/_index.yml
+  - type: ErrorCatalog
+    url: errors/nutrientsdb-problem-types.yml
+  - type: DataModel
+    url: data-model/nutrientsdb-data-model.yml
+  - type: JSONSchema
+    url: json-schema/nutrientsdb-food.json
+  - type: Arazzo
+    url: arazzo/nutrientsdb-search-then-lookup.yml
 maintainers:
   - FN: Colinear Studio
     url: https://github.com/colinearstudio
@@ -74,6 +59,10 @@ generated:
   confidence: 80
   at: '2026-08-02T16:14:49.198Z'
 common:
+- type: MCPServer
+  url: mcp/nutrientsdb-mcp.yml
+- type: Overlay
+  url: overlays/nutrientsdb-sample-api-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/nutrientsdb-agentic-access.yml
 - type: DomainSecurity
