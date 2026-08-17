@@ -8,7 +8,7 @@ description: >-
   slice carrying the identical 86-field schema, so developers, researchers, and AI builders can inspect the shape and
   density of the data before licensing it. The same sample is mirrored as plain JSON on GitHub and Hugging Face.
 image: https://nutrientsdb.com/og-image.png
-url: https://nutrientsdb.apievangelist.com/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/nutrientsdb/refs/heads/main/apis.yml
 created: '2026-08-02'
 modified: '2026-08-09'
 specificationVersion: '0.21'
