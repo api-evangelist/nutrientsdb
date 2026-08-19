@@ -1,0 +1,234 @@
+{
+  "item": [
+    {
+      "id": "e8ff50ff-2bcf-4c49-9fc6-7f1c6fb1099d",
+      "name": "Foods",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aff80846-8b40-4c34-9c86-3d9734e1f2ce",
+          "name": "Search foods or retrieve one sample record",
+          "request": {
+            "name": "Search foods or retrieve one sample record",
+            "description": {
+              "content": "Provide either q for a case-insensitive name search or id for an exact public_id lookup.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "foods"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Food name fragment. Minimum 2 characters."
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<integer>",
+                  "description": "Exact NutrientsDB public_id from the sample."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum search results. Values above 20 are capped at 20."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c81d11c3-38e3-469d-82c8-846827750131",
+              "name": "A search result or exact food record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "foods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sample\": {\n    \"food_count\": 1000,\n    \"nutrient_count\": 86\n  },\n  \"query\": \"string\",\n  \"count\": 26,\n  \"total_matches\": 7528,\n  \"limit\": 9473,\n  \"foods\": [\n    {\n      \"public_id\": 2923506,\n      \"name\": \"Turkey, drumstick, meat only, raw\",\n      \"nutrients\": {\n        \"key_0\": 2594.623058296697\n      }\n    },\n    {\n      \"public_id\": 2923506,\n      \"name\": \"Turkey, drumstick, meat only, raw\",\n      \"nutrients\": {\n        \"key_0\": null,\n        \"key_1\": null,\n        \"key_2\": 9795.691594968552\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c331720e-b8c2-4551-8c3f-c9786751efaa",
+              "name": "Invalid query parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "foods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sample\": {\n    \"food_count\": 1000,\n    \"nutrient_count\": 86\n  },\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5350e916-7a75-4527-81c0-0d55105bb5a0",
+              "name": "The requested public_id is not in the sample.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "foods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sample\": {\n    \"food_count\": 1000,\n    \"nutrient_count\": 86\n  },\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.nutrientsdb.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "33e4cac6-1037-4369-810b-990092b5ea9f",
+    "name": "NutrientsDB Sample Foods API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Search and inspect the public 1,000-food NutrientsDB sample. The full NutrientsDB product is a downloadable dataset, not a hosted API.\n\nContact Support:\n Name: NutrientsDB",
+      "type": "text/plain"
+    }
+  }
+}

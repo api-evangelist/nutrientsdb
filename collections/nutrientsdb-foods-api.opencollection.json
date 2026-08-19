@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NutrientsDB Sample Foods API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Foods",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search foods or retrieve one sample record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.nutrientsdb.com/api/foods",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Food name fragment. Minimum 2 characters."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Exact NutrientsDB public_id from the sample."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum search results. Values above 20 are capped at 20."
+              }
+            ]
+          },
+          "docs": "Provide either q for a case-insensitive name search or id for an exact public_id lookup."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

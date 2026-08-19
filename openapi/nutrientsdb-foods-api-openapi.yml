@@ -1,0 +1,143 @@
+openapi: 3.2.0
+info:
+  title: NutrientsDB Sample Foods API
+  version: 1.0.0
+  description: Search and inspect the public 1,000-food NutrientsDB sample. The full NutrientsDB product is a downloadable dataset, not a hosted API.
+  contact:
+    name: NutrientsDB
+    url: https://www.nutrientsdb.com/contact
+servers:
+- url: https://www.nutrientsdb.com
+tags:
+- name: Foods
+paths:
+  /api/foods:
+    get:
+      operationId: findFoods
+      summary: Search foods or retrieve one sample record
+      description: Provide either q for a case-insensitive name search or id for an exact public_id lookup.
+      parameters:
+      - name: q
+        in: query
+        description: Food name fragment. Minimum 2 characters.
+        schema:
+          type: string
+          minLength: 2
+          maxLength: 100
+      - name: id
+        in: query
+        description: Exact NutrientsDB public_id from the sample.
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: Maximum search results. Values above 20 are capped at 20.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 20
+          default: 10
+      responses:
+        '200':
+          description: A search result or exact food record.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/SearchResponse'
+                - $ref: '#/components/schemas/LookupResponse'
+        '400':
+          description: Invalid query parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: The requested public_id is not in the sample.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Foods
+components:
+  schemas:
+    SearchResponse:
+      type: object
+      required:
+      - sample
+      - query
+      - count
+      - total_matches
+      - limit
+      - foods
+      properties:
+        sample:
+          $ref: '#/components/schemas/SampleMetadata'
+        query:
+          type: string
+        count:
+          type: integer
+        total_matches:
+          type: integer
+        limit:
+          type: integer
+        foods:
+          type: array
+          items:
+            $ref: '#/components/schemas/Food'
+    Food:
+      type: object
+      required:
+      - public_id
+      - name
+      - nutrients
+      properties:
+        public_id:
+          type: integer
+          example: 2923506
+        name:
+          type: string
+          example: Turkey, drumstick, meat only, raw
+        nutrients:
+          type: object
+          description: All 86 normalized nutrient keys. A value is null when the source does not report it.
+          additionalProperties:
+            type:
+            - number
+            - 'null'
+    LookupResponse:
+      type: object
+      required:
+      - sample
+      - food
+      properties:
+        sample:
+          $ref: '#/components/schemas/SampleMetadata'
+        food:
+          $ref: '#/components/schemas/Food'
+    SampleMetadata:
+      type: object
+      required:
+      - food_count
+      - nutrient_count
+      properties:
+        food_count:
+          type: integer
+          example: 1000
+        nutrient_count:
+          type: integer
+          example: 86
+    ErrorResponse:
+      type: object
+      required:
+      - sample
+      - error
+      properties:
+        sample:
+          $ref: '#/components/schemas/SampleMetadata'
+        error:
+          type: string
+externalDocs:
+  description: NutrientsDB schema and field reference
+  url: https://www.nutrientsdb.com/docs

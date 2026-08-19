@@ -1,0 +1,17 @@
+{
+  "provider": "nutrientsdb",
+  "sources": [
+    "nutrientsdb-foods-api-openapi.yml"
+  ],
+  "outputs": [
+    "nutrientsdb-foods-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "nutrientsdb-foods-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": []
+}
