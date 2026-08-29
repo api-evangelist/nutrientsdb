@@ -7,6 +7,18 @@ description: >-
   NutrientsDB fronts the licensed dataset with a free, keyless, read-only Sample API that exposes a public 1,000-food
   slice carrying the identical 86-field schema, so developers, researchers, and AI builders can inspect the shape and
   density of the data before licensing it. The same sample is mirrored as plain JSON on GitHub and Hugging Face.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://nutrientsdb.com/og-image.png
 url: https://raw.githubusercontent.com/api-evangelist/nutrientsdb/refs/heads/main/apis.yml
 created: '2026-08-02'
