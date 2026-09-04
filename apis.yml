@@ -19,6 +19,19 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+accessModel:
+  pricing: unknown
+  onboarding: open
+  trial: false
+  try_now: false
+  public: true
+  label: Open access
+  confidence: low
+  source:
+  - authentication
+  - security
+  generated: '2026-09-02'
+  method: derived
 image: https://nutrientsdb.com/og-image.png
 url: https://raw.githubusercontent.com/api-evangelist/nutrientsdb/refs/heads/main/apis.yml
 created: '2026-08-02'
@@ -84,8 +97,9 @@ generated:
   confidence: 80
   at: '2026-08-02T16:14:49.198Z'
 common:
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/nutrientsdb-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: Overlay
   url: overlays/nutrientsdb-sample-api-overlay.yaml
 - type: AgenticAccess
