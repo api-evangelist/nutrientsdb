@@ -45,7 +45,7 @@ tags:
   - Data
   - Search
   - Sample Data
-  - Dataset
+  - Datasets
   - ai-builders
   - Reference Data
   - Open Data
@@ -70,6 +70,8 @@ apis:
   humanURL: https://www.nutrientsdb.com/api/docs
   baseURL: https://www.nutrientsdb.com/api
   tags:
+  - Food
+  tags_raw:
   - Foods
   properties:
   - type: OpenAPI
