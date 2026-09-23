@@ -62,6 +62,36 @@ paths:
       - Foods
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      required:
+      - sample
+      - error
+      properties:
+        sample:
+          $ref: '#/components/schemas/SampleMetadata'
+        error:
+          type: string
+    Food:
+      type: object
+      required:
+      - public_id
+      - name
+      - nutrients
+      properties:
+        public_id:
+          type: integer
+          example: 2923506
+        name:
+          type: string
+          example: Turkey, drumstick, meat only, raw
+        nutrients:
+          type: object
+          description: All 86 normalized nutrient keys. A value is null when the source does not report it.
+          additionalProperties:
+            type:
+            - number
+            - 'null'
     SearchResponse:
       type: object
       required:
@@ -86,26 +116,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Food'
-    Food:
-      type: object
-      required:
-      - public_id
-      - name
-      - nutrients
-      properties:
-        public_id:
-          type: integer
-          example: 2923506
-        name:
-          type: string
-          example: Turkey, drumstick, meat only, raw
-        nutrients:
-          type: object
-          description: All 86 normalized nutrient keys. A value is null when the source does not report it.
-          additionalProperties:
-            type:
-            - number
-            - 'null'
     LookupResponse:
       type: object
       required:
@@ -128,16 +138,6 @@ components:
         nutrient_count:
           type: integer
           example: 86
-    ErrorResponse:
-      type: object
-      required:
-      - sample
-      - error
-      properties:
-        sample:
-          $ref: '#/components/schemas/SampleMetadata'
-        error:
-          type: string
 externalDocs:
   description: NutrientsDB schema and field reference
   url: https://www.nutrientsdb.com/docs

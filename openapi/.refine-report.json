@@ -1,7 +1,7 @@
 {
   "provider": "nutrientsdb",
   "sources": [
-    "nutrientsdb-foods-api-openapi.yml"
+    "_original/nutrientsdb-sample-api-openapi.yml"
   ],
   "outputs": [
     "nutrientsdb-foods-api-openapi.yml"
@@ -10,8 +10,15 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "nutrientsdb-foods-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "nutrientsdb-sample-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "nutrientsdb-sample-api-openapi.yml: tagged paths GET /api/foods -> Foods",
+    "nutrientsdb-sample-api-openapi.yml: declared missing tag: Foods",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "_original/nutrientsdb-sample-openapi-original.json: archived document superseded by a larger archived document",
+    "nutrientsdb-foods-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
