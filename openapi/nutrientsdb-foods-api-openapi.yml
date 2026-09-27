@@ -62,36 +62,18 @@ paths:
       - Foods
 components:
   schemas:
-    ErrorResponse:
+    SampleMetadata:
       type: object
       required:
-      - sample
-      - error
+      - food_count
+      - nutrient_count
       properties:
-        sample:
-          $ref: '#/components/schemas/SampleMetadata'
-        error:
-          type: string
-    Food:
-      type: object
-      required:
-      - public_id
-      - name
-      - nutrients
-      properties:
-        public_id:
+        food_count:
           type: integer
-          example: 2923506
-        name:
-          type: string
-          example: Turkey, drumstick, meat only, raw
-        nutrients:
-          type: object
-          description: All 86 normalized nutrient keys. A value is null when the source does not report it.
-          additionalProperties:
-            type:
-            - number
-            - 'null'
+          example: 1000
+        nutrient_count:
+          type: integer
+          example: 86
     SearchResponse:
       type: object
       required:
@@ -126,18 +108,36 @@ components:
           $ref: '#/components/schemas/SampleMetadata'
         food:
           $ref: '#/components/schemas/Food'
-    SampleMetadata:
+    Food:
       type: object
       required:
-      - food_count
-      - nutrient_count
+      - public_id
+      - name
+      - nutrients
       properties:
-        food_count:
+        public_id:
           type: integer
-          example: 1000
-        nutrient_count:
-          type: integer
-          example: 86
+          example: 2923506
+        name:
+          type: string
+          example: Turkey, drumstick, meat only, raw
+        nutrients:
+          type: object
+          description: All 86 normalized nutrient keys. A value is null when the source does not report it.
+          additionalProperties:
+            type:
+            - number
+            - 'null'
+    ErrorResponse:
+      type: object
+      required:
+      - sample
+      - error
+      properties:
+        sample:
+          $ref: '#/components/schemas/SampleMetadata'
+        error:
+          type: string
 externalDocs:
   description: NutrientsDB schema and field reference
   url: https://www.nutrientsdb.com/docs
