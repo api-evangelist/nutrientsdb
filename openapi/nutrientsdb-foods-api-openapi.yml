@@ -62,18 +62,6 @@ paths:
       - Foods
 components:
   schemas:
-    SampleMetadata:
-      type: object
-      required:
-      - food_count
-      - nutrient_count
-      properties:
-        food_count:
-          type: integer
-          example: 1000
-        nutrient_count:
-          type: integer
-          example: 86
     SearchResponse:
       type: object
       required:
@@ -98,16 +86,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Food'
-    LookupResponse:
-      type: object
-      required:
-      - sample
-      - food
-      properties:
-        sample:
-          $ref: '#/components/schemas/SampleMetadata'
-        food:
-          $ref: '#/components/schemas/Food'
     Food:
       type: object
       required:
@@ -128,6 +106,28 @@ components:
             type:
             - number
             - 'null'
+    SampleMetadata:
+      type: object
+      required:
+      - food_count
+      - nutrient_count
+      properties:
+        food_count:
+          type: integer
+          example: 1000
+        nutrient_count:
+          type: integer
+          example: 86
+    LookupResponse:
+      type: object
+      required:
+      - sample
+      - food
+      properties:
+        sample:
+          $ref: '#/components/schemas/SampleMetadata'
+        food:
+          $ref: '#/components/schemas/Food'
     ErrorResponse:
       type: object
       required:
