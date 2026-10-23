@@ -141,3 +141,9 @@ components:
 externalDocs:
   description: NutrientsDB schema and field reference
   url: https://www.nutrientsdb.com/docs
+x-provenance:
+  method: harvested
+  publisher: NutrientsDB
+  source: https://www.nutrientsdb.com/api/openapi
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
